@@ -1,0 +1,12 @@
+{
+    "name": "vinicius/thewisedev",
+    "autoload": {
+        "psr-4": {
+            "Src\\": "src/"
+        }
+    },
+    "require-dev": {
+        "fzaninotto/faker": "^1.9",
+        "phpunit/phpunit": "^9.5"
+    }
+}
