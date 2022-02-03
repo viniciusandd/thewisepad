@@ -12,4 +12,8 @@ WORKDIR /var/www/app
 
 COPY . .
 
+RUN apt install -y mysql-common
+
+RUN docker-php-ext-install pdo_mysql
+
 RUN composer install --dev
