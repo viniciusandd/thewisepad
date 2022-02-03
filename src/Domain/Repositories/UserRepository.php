@@ -6,6 +6,6 @@ use Src\Domain\Models\UserModel;
 
 interface UserRepository
 {
-    public function findByEmail($email);
+    public function findByEmail($email) : UserModel;
     public function add(UserModel $userModel);
 }
