@@ -2,16 +2,18 @@
 
 namespace Src\External\Repositories\MySql;
 
+use Doctrine\ORM\EntityManager;
+use Src\Database\Models\User;
 use Src\Domain\Models\UserModel;
 use Src\Domain\Repositories\UserRepository;
 
 class MySqlUserRepository implements UserRepository
 {
-    private $helper;
+    private EntityManager $entityManager;
 
-    public function __construct($helper)
+    public function __construct(EntityManager $entityManager)
     {
-        $this->helper = $helper;
+        $this->entityManager = $entityManager;
     }
 
     public function findByEmail($email): UserModel
@@ -24,8 +26,14 @@ class MySqlUserRepository implements UserRepository
 
     public function add(UserModel $userModel)
     {
-        $sql = "insert into users (email, password) values (?, ?)";
-        $params = [$userModel->getEmail(), $userModel->getPassword()];
-        $this->helper->insert($sql, $params);
+        $user = new User();
+        $user->setEmail($userModel->getEmail());
+        $user->setPassword($userModel->getPassword());
+
+        var_dump($user);
+        var_dump($this->entityManager);
+
+        $this->entityManager->persist($user);
+        $this->entityManager->flush();
     }
 }
