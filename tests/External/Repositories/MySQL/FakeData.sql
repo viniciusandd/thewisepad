@@ -1,0 +1,1 @@
+insert into users (email, password) values ("vinicius@gmail.com", "2TEStRPulB8o8J2Wwnf8xBZTRrKpAmt3")

@@ -12,11 +12,15 @@ class MySqlUserRepositoryTest extends TestCase
 
     public static function setUpBeforeClass(): void
     {
-        $dsn = getenv('DB_DSN');
+        system('vendor/bin/doctrine orm:schema-tool:drop --force && vendor/bin/doctrine orm:schema-tool:create');
+        system('vendor/bin/doctrine dbal:run-sql "$(cat tests/External/Repositories/MySQL/FakeData.sql)"');
+
+        $host = getenv('DB_HOST');
         $user = getenv('DB_USER');
         $password = getenv('DB_PASSWORD');
+        $dbname = getenv('DB_NAME');
 
-        self::$pdo = new PDO($dsn, $user, $password);
+        self::$pdo = new PDO("mysql:host=$host;dbname=$dbname", $user, $password);
     }
 
     protected function setUp(): void

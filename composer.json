@@ -5,8 +5,18 @@
             "Src\\": "src/"
         }
     },
+    "require": {
+        "doctrine/orm": "^2.11.0",
+        "doctrine/dbal": "^3.2",
+        "doctrine/annotations": "1.13.2",
+        "symfony/yaml": "^5.4",
+        "symfony/cache": "^5.4"
+    },    
     "require-dev": {
         "fzaninotto/faker": "^1.9",
         "phpunit/phpunit": "^9.5"
+    },
+    "scripts": {
+        "tests": "./vendor/bin/phpunit --testdox tests/"
     }
 }
